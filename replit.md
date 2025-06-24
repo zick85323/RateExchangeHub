@@ -99,6 +99,7 @@ The application uses three main entities:
 
 ## Changelog
 - June 24, 2025. Initial setup
+- June 24, 2025. Complete crypto exchange dashboard implementation with rate setup controls, offer management, and full project structure documentation
 
 ## User Preferences
 
