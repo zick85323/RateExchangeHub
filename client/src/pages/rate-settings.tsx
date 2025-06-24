@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Save } from "lucide-react";
+import { RefreshCw, Save, ArrowLeftRight } from "lucide-react";
+import { Link } from "wouter";
 import RateSetupControls from "@/components/RateSetupControls";
 import MyOffersSetup from "@/components/MyOffersSetup";
 import type { RateConfiguration } from "@shared/schema";
@@ -23,22 +24,31 @@ export default function RateSettings() {
     <div className="min-h-screen bg-gray-50 p-4 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Top Action Bar */}
-        <div className="flex justify-end space-x-3">
-          <Button
-            variant="outline"
-            onClick={handleRefreshRate}
-            className="flex items-center space-x-2 text-gray-700 border-gray-300 hover:bg-gray-50"
-          >
-            <RefreshCw className="h-4 w-4" />
-            <span>Refresh Rate</span>
-          </Button>
-          <Button
-            onClick={handleSaveSettings}
-            className="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white"
-          >
-            <Save className="h-4 w-4" />
-            <span>Save Settings</span>
-          </Button>
+        <div className="flex justify-between items-center">
+          <Link href="/coin-exchange">
+            <Button variant="outline" className="flex items-center space-x-2">
+              <ArrowLeftRight className="h-4 w-4" />
+              <span>Go to Coin Exchange</span>
+            </Button>
+          </Link>
+          
+          <div className="flex space-x-3">
+            <Button
+              variant="outline"
+              onClick={handleRefreshRate}
+              className="flex items-center space-x-2 text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh Rate</span>
+            </Button>
+            <Button
+              onClick={handleSaveSettings}
+              className="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white"
+            >
+              <Save className="h-4 w-4" />
+              <span>Save Settings</span>
+            </Button>
+          </div>
         </div>
 
         {/* Header */}
