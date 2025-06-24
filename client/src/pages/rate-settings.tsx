@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { RefreshCw, Save } from "lucide-react";
 import RateSetupControls from "@/components/RateSetupControls";
 import MyOffersSetup from "@/components/MyOffersSetup";
 import type { RateConfiguration } from "@shared/schema";
@@ -7,9 +9,38 @@ import type { RateConfiguration } from "@shared/schema";
 export default function RateSettings() {
   const [currentConfig, setCurrentConfig] = useState<RateConfiguration | null>(null);
 
+  const handleRefreshRate = () => {
+    // Force refresh the external rates
+    window.location.reload();
+  };
+
+  const handleSaveSettings = () => {
+    // Settings are auto-saved, this is just for user feedback
+    alert("Settings saved successfully!");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
+        {/* Top Action Bar */}
+        <div className="flex justify-end space-x-3">
+          <Button
+            variant="outline"
+            onClick={handleRefreshRate}
+            className="flex items-center space-x-2 text-gray-700 border-gray-300 hover:bg-gray-50"
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span>Refresh Rate</span>
+          </Button>
+          <Button
+            onClick={handleSaveSettings}
+            className="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white"
+          >
+            <Save className="h-4 w-4" />
+            <span>Save Settings</span>
+          </Button>
+        </div>
+
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between">
