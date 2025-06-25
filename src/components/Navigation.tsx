@@ -1,7 +1,29 @@
-import { Link, useLocation } from "wouter";
+'use client';
+
+import { useState, useEffect } from "react";
 
 export default function Navigation() {
-  const [location] = useLocation();
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+    
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
+
+  const handleNavigation = (path: string) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
 
   const navItems = [
     { path: "/coin-exchange", label: "Coin Exchange" },
@@ -15,15 +37,17 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto">
         <div className="flex space-x-6">
           {navItems.map((item) => (
-            <Link key={item.path} href={item.path}>
-              <a className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                location === item.path 
+            <button
+              key={item.path}
+              onClick={() => handleNavigation(item.path)}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                currentPath === item.path 
                   ? "bg-orange-500 text-white" 
                   : "text-gray-700 hover:bg-gray-100"
-              }`}>
-                {item.label}
-              </a>
-            </Link>
+              }`}
+            >
+              {item.label}
+            </button>
           ))}
         </div>
       </div>
