@@ -6,7 +6,8 @@ export default function Navigation() {
   const navItems = [
     { path: "/coin-exchange", label: "Coin Exchange" },
     { path: "/rate-settings", label: "Rate Settings" }, 
-    { path: "/bank-management", label: "Bank Management" }
+    { path: "/bank-management", label: "Bank Management" },
+    { path: "/error-bank-log", label: "Error Bank Log" }
   ];
 
   return (
